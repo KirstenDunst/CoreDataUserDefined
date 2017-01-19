@@ -61,6 +61,7 @@
 
 
 - (void)addObject:(UIButton *)sender{
+    
     [[CoreDataTool shareCoreDataTool] insertToTable:@"People" WithBlock:^(People *obj) {
         obj.name = @"吕布";
         obj.age = 90;
@@ -69,16 +70,19 @@
     } withError:^(NSError *error) {
         NSLog(@"%@",error);
     }];
+    
 }
 
 
 - (void)deleteChoose: (UIButton *)sender{
+    //谓词
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = '吕布'"];
     [[CoreDataTool shareCoreDataTool]deleteDataWithTableName:@"People" WithPredicate:predicate];
 }
 
 
 - (void)updateChoose: (UIButton *)sender{
+    //谓词
     NSPredicate *predictate = [NSPredicate predicateWithFormat:@"name = '吕布'"];
     [[CoreDataTool shareCoreDataTool]updateToTable:@"People" withPredicate:predictate withUpdateBlock:^(NSArray *fetchedObjects) {
         for (People *lv in fetchedObjects) {
@@ -89,6 +93,7 @@
 }
 
 - (void)selectChoose: (UIButton *)sender{
+    // 谓词，选择的条件
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"age = 99"];
     NSArray *arr = [[CoreDataTool shareCoreDataTool]selectFromDataWithPredicate:predicate];
     for (int i = 0; i<arr.count; i++) {

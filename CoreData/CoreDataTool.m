@@ -250,6 +250,7 @@ static CoreDataTool *_coreDataTool;
 
 
 - (NSManagedObjectContext *)managedObjectContext {
+    
     // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
@@ -262,7 +263,9 @@ static CoreDataTool *_coreDataTool;
     _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     return _managedObjectContext;
+    
 }
+
 
 #pragma mark - Core Data Saving support
 
